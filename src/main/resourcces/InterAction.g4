@@ -6,12 +6,14 @@ grammar InterAction;
 
 
 expr:  expr LogicOperation expr                    # logicOperate
-      |'(' expr ')'                                # parents
+      | LeftBracket expr RightBracket              # parents
       | STR AssignOperation STR                    # assignOperate
       ;
 
 STR                : [ a-zA-Z0-9]|[ .a-zA-Z0-9]+ ;
 LogicOperation     : WS[|&]+WS;
 AssignOperation    : WS[=!]+WS;
+LeftBracket        : WS'(';
+RightBracket       : ')'WS ;
 
 WS: [ \t\r\n]* -> skip;

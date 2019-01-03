@@ -13,10 +13,10 @@
             <plugin>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-maven-plugin</artifactId>
-                <version>4.7</version>
+                <version>4.3</version>
                 <configuration>
-                    <sourceDirectory>src/test/java/InterAction.g4</sourceDirectory>
-                    <outputDirectory>${basedir}/src/main/java/com/interActionInbox</outputDirectory>
+                    <sourceDirectory>${basedir}/src/main/resourcces</sourceDirectory>
+                    <outputDirectory>${basedir}/target/generated-sources/com/antlr4/interAction</outputDirectory>
                     <includes>
                         <include>InterAction.g4</include>
                     </includes>
@@ -45,7 +45,7 @@
         <dependency>
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-runtime</artifactId>
-            <version>4.7</version>
+            <version>4.3</version>
         </dependency>
         <dependency>
             <groupId>org.antlr</groupId>

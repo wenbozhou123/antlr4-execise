@@ -1,6 +1,6 @@
 
-import com.interActionInbox.InterActionLexer;
-import com.interActionInbox.InterActionParser;
+import com.antlr4.interAction.InterActionLexer;
+import com.antlr4.interAction.InterActionParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;

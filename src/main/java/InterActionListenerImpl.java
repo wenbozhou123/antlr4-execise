@@ -1,5 +1,5 @@
-import com.interActionInbox.InterActionListener;
-import com.interActionInbox.InterActionParser;
+import com.antlr4.interAction.InterActionListener;
+import com.antlr4.interAction.InterActionParser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;

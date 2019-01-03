@@ -39,6 +39,8 @@ public class FilterInterActionInbox {
         InterActionLexer lexer = new InterActionLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         InterActionParser parser = new InterActionParser(tokens);
+        /*parser.removeErrorListeners();
+        parser.addErrorListener(new VerboseListener());*/
         return parser;
     }
 }

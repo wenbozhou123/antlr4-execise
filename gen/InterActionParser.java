@@ -66,7 +66,7 @@ public class InterActionParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "InterAction.g4"; }
+	public String getGrammarFileName() { return "src/test/InterAction.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

@@ -10,18 +10,6 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface InterActionListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by the {@code str}
-	 * labeled alternative in {@link InterActionParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterStr(InterActionParser.StrContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code str}
-	 * labeled alternative in {@link InterActionParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitStr(InterActionParser.StrContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code logicOperate}
 	 * labeled alternative in {@link InterActionParser#expr}.
 	 * @param ctx the parse tree

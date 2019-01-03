@@ -18,18 +18,6 @@ public class InterActionBaseListener implements InterActionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStr(InterActionParser.StrContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStr(InterActionParser.StrContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterLogicOperate(InterActionParser.LogicOperateContext ctx) { }
 	/**
 	 * {@inheritDoc}

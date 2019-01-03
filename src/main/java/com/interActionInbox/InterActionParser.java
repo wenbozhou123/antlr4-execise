@@ -19,7 +19,7 @@ public class InterActionParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, STR=3, AND=4, OR=5, OPERATE=6, WS=7;
+		T__0=1, T__1=2, STR=3, LogicOperation=4, AssignOperation=5, WS=6;
 	public static final int
 		RULE_expr = 0;
 	public static final String[] ruleNames = {
@@ -30,7 +30,7 @@ public class InterActionParser extends Parser {
 		null, "'('", "')'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, "STR", "AND", "OR", "OPERATE", "WS"
+		null, null, null, "STR", "LogicOperation", "AssignOperation", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -92,18 +92,6 @@ public class InterActionParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class StrContext extends ExprContext {
-		public TerminalNode STR() { return getToken(InterActionParser.STR, 0); }
-		public StrContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof InterActionListener ) ((InterActionListener)listener).enterStr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof InterActionListener ) ((InterActionListener)listener).exitStr(this);
-		}
-	}
 	public static class LogicOperateContext extends ExprContext {
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
@@ -111,8 +99,7 @@ public class InterActionParser extends Parser {
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
-		public TerminalNode AND() { return getToken(InterActionParser.AND, 0); }
-		public TerminalNode OR() { return getToken(InterActionParser.OR, 0); }
+		public TerminalNode LogicOperation() { return getToken(InterActionParser.LogicOperation, 0); }
 		public LogicOperateContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -124,13 +111,11 @@ public class InterActionParser extends Parser {
 		}
 	}
 	public static class AssignOperateContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
+		public List<TerminalNode> STR() { return getTokens(InterActionParser.STR); }
+		public TerminalNode STR(int i) {
+			return getToken(InterActionParser.STR, i);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode OPERATE() { return getToken(InterActionParser.OPERATE, 0); }
+		public TerminalNode AssignOperation() { return getToken(InterActionParser.AssignOperation, 0); }
 		public AssignOperateContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -167,12 +152,11 @@ public class InterActionParser extends Parser {
 		ExprContext _prevctx = _localctx;
 		int _startState = 0;
 		enterRecursionRule(_localctx, 0, RULE_expr, _p);
-		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(8);
+			setState(10);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__0:
@@ -191,10 +175,14 @@ public class InterActionParser extends Parser {
 				break;
 			case STR:
 				{
-				_localctx = new StrContext(_localctx);
+				_localctx = new AssignOperateContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(7);
+				match(STR);
+				setState(8);
+				match(AssignOperation);
+				setState(9);
 				match(STR);
 				}
 				break;
@@ -202,55 +190,29 @@ public class InterActionParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(18);
+			setState(17);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(16);
-					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
-					case 1:
-						{
-						_localctx = new AssignOperateContext(new ExprContext(_parentctx, _parentState));
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(10);
-						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(11);
-						match(OPERATE);
-						setState(12);
-						expr(5);
-						}
-						break;
-					case 2:
-						{
-						_localctx = new LogicOperateContext(new ExprContext(_parentctx, _parentState));
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(13);
-						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(14);
-						_la = _input.LA(1);
-						if ( !(_la==AND || _la==OR) ) {
-						_errHandler.recoverInline(this);
-						}
-						else {
-							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-							_errHandler.reportMatch(this);
-							consume();
-						}
-						setState(15);
-						expr(4);
-						}
-						break;
+					{
+					_localctx = new LogicOperateContext(new ExprContext(_parentctx, _parentState));
+					pushNewRecursionContext(_localctx, _startState, RULE_expr);
+					setState(12);
+					if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
+					setState(13);
+					match(LogicOperation);
+					setState(14);
+					expr(4);
 					}
 					} 
 				}
-				setState(20);
+				setState(19);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			}
 			}
 		}
@@ -275,22 +237,19 @@ public class InterActionParser extends Parser {
 	private boolean expr_sempred(ExprContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 4);
-		case 1:
 			return precpred(_ctx, 3);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\t\30\4\2\t\2\3\2"+
-		"\3\2\3\2\3\2\3\2\3\2\5\2\13\n\2\3\2\3\2\3\2\3\2\3\2\3\2\7\2\23\n\2\f\2"+
-		"\16\2\26\13\2\3\2\2\3\2\3\2\2\3\3\2\6\7\2\31\2\n\3\2\2\2\4\5\b\2\1\2\5"+
-		"\6\7\3\2\2\6\7\5\2\2\2\7\b\7\4\2\2\b\13\3\2\2\2\t\13\7\5\2\2\n\4\3\2\2"+
-		"\2\n\t\3\2\2\2\13\24\3\2\2\2\f\r\f\6\2\2\r\16\7\b\2\2\16\23\5\2\2\7\17"+
-		"\20\f\5\2\2\20\21\t\2\2\2\21\23\5\2\2\6\22\f\3\2\2\2\22\17\3\2\2\2\23"+
-		"\26\3\2\2\2\24\22\3\2\2\2\24\25\3\2\2\2\25\3\3\2\2\2\26\24\3\2\2\2\5\n"+
-		"\22\24";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\b\27\4\2\t\2\3\2"+
+		"\3\2\3\2\3\2\3\2\3\2\3\2\3\2\5\2\r\n\2\3\2\3\2\3\2\7\2\22\n\2\f\2\16\2"+
+		"\25\13\2\3\2\2\3\2\3\2\2\2\2\27\2\f\3\2\2\2\4\5\b\2\1\2\5\6\7\3\2\2\6"+
+		"\7\5\2\2\2\7\b\7\4\2\2\b\r\3\2\2\2\t\n\7\5\2\2\n\13\7\7\2\2\13\r\7\5\2"+
+		"\2\f\4\3\2\2\2\f\t\3\2\2\2\r\23\3\2\2\2\16\17\f\5\2\2\17\20\7\6\2\2\20"+
+		"\22\5\2\2\6\21\16\3\2\2\2\22\25\3\2\2\2\23\21\3\2\2\2\23\24\3\2\2\2\24"+
+		"\3\3\2\2\2\25\23\3\2\2\2\4\f\23";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

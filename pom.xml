@@ -13,9 +13,9 @@
             <plugin>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-maven-plugin</artifactId>
-                <version>4.3</version>
+                <version>4.7</version>
                 <configuration>
-                    <sourceDirectory>src/main/resourcces/InterAction.g4</sourceDirectory>
+                    <sourceDirectory>src/test/java/InterAction.g4</sourceDirectory>
                     <outputDirectory>${basedir}/src/main/java/com/interActionInbox</outputDirectory>
                     <includes>
                         <include>InterAction.g4</include>
@@ -26,6 +26,7 @@
                         <goals>
                             <goal>antlr4</goal>
                         </goals>
+                        <phase>validate</phase>
                     </execution>
                 </executions>
             </plugin>

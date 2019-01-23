@@ -10,7 +10,7 @@ expr:  expr LogicOperation expr                    # logicOperate
       | STR AssignOperation STR                    # assignOperate
       ;
 
-STR                : [ a-zA-Z0-9]|[ .a-zA-Z0-9]+ ;
+STR                : [ \.a-zA-Z0-9]+ ;
 LogicOperation     : WS[|&]+WS;
 AssignOperation    : WS[=!]+WS;
 LeftBracket        : WS'(';

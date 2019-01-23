@@ -4,16 +4,15 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 public class InterActionListenerImpl implements InterActionListener {
 
     private Queue<String> queue = new LinkedList<>();
 
     private Map<String, String> fieldMap = new HashMap<>();
+
+    private List<String> typeValuesList = Arrays.asList("SERVICE", "SUPPORT", "SELF-SERVICE");
 
     private boolean isSucess = true;
 
@@ -50,6 +49,16 @@ public class InterActionListenerImpl implements InterActionListener {
         return str;
     }
 
+    private void addValueWhenType(String operate, String value){
+        if(typeValuesList.contains(value)){
+            operate = value.equals("SERVICE") ? operate : "~=";
+            queue.offer(operate);
+            queue.offer("'service catalog'");
+        }else {
+            setSucess(false);
+        }
+    }
+
     private void addOperate(InterActionParser.ExprContext ctx){
         InterActionParser.ExprContext parent = (InterActionParser.ExprContext) ctx.getParent();
         if(parent != null && parent.getChild(2) != ctx && !parent.getChild(2).getText().trim().equals(")")){
@@ -72,16 +81,21 @@ public class InterActionListenerImpl implements InterActionListener {
 
     @Override
     public void exitLogicOperate(InterActionParser.LogicOperateContext ctx) {
-
+        addOperate(ctx);
     }
 
     @Override
     public void enterAssignOperate(InterActionParser.AssignOperateContext ctx) {
         String[] firstChildArrByPoint = ctx.getChild(0).getText().trim().split("\\.");
+        String operate = ctx.getChild(1).getText().trim();
         String[] SecondChildArrByPoint = ctx.getChild(2).getText().trim().split("\\.");
         containsKeyAndAdd(firstChildArrByPoint[firstChildArrByPoint.length-1].trim());
-        containsKeyAndAdd(ctx.getChild(1).getText().trim());
-        queue.offer("'" + SecondChildArrByPoint[SecondChildArrByPoint.length-1].trim() + "'");
+        if(firstChildArrByPoint[firstChildArrByPoint.length-1].trim().equals("type")){
+            addValueWhenType(operate, SecondChildArrByPoint[SecondChildArrByPoint.length-1].trim().toUpperCase());
+        }else{
+            containsKeyAndAdd(operate);
+            queue.offer("'" + SecondChildArrByPoint[SecondChildArrByPoint.length-1].trim() + "'");
+        }
     }
 
     @Override

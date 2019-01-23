@@ -31,6 +31,7 @@ public class FilterInterActionInbox {
         interActionListenerImpl.setFieldMap(initMap(fieldMap));
         ParseTree tree = parser.expr();
         walker.walk(interActionListenerImpl, tree);
+        System.out.println("tree:" + tree.getText());
         return interActionListenerImpl.mapToString();
     }
 

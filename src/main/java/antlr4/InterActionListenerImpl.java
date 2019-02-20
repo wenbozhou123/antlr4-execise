@@ -1,3 +1,5 @@
+package antlr4;
+
 import com.antlr4.interAction.InterActionListener;
 import com.antlr4.interAction.InterActionParser;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -50,8 +52,8 @@ public class InterActionListenerImpl implements InterActionListener {
     }
 
     private void addValueWhenType(String operate, String value){
-        if(typeValuesList.contains(value)){
-            operate = value.equals("SERVICE") ? operate : "~=";
+        if(typeValuesList.contains(value) && fieldMap.containsKey(operate)){
+            operate = value.equalsIgnoreCase("service") ? fieldMap.get(operate) : "~=";
             queue.offer(operate);
             queue.offer("'service catalog'");
         }else {

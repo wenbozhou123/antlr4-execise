@@ -1,3 +1,5 @@
+package antlr4;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,8 +9,9 @@ public class Tetsantlr4 {
         Map<String, String> fieldMap = initMap();
         //String expr1="((interaction.approvalStatus == pending || interaction.approvalStatus == denied) && interaction.type == Service)||(interaction.status == Resolved && interaction.type == Service)||(interaction.status == Resolved && (interaction.type == Support || interaction.type == Self-service))||(interaction.status == Resolved && (interaction.type == Support || interaction.type == Self-service))||(interaction.status != Closed && (interaction.type == Support || interaction.type == Self-service))||(interaction.status == Resolved && interaction.type == Service)";
         String expr1= "((interaction.approvalStatus == pending || interaction.approvalStatus == denied) && interaction.type == Service)||(interaction.status == Resolved && interaction.type == Service)";
+        String expr2= "(interaction.status==wzd)";
         FilterInterActionInbox filterInterActionInbox = new FilterInterActionInbox();
-        String result1 = filterInterActionInbox.mapToSMField(expr1, fieldMap);
+        String result2 = filterInterActionInbox.mapToSMField(expr2, fieldMap);
 
     }
 

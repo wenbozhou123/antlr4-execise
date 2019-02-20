@@ -1,3 +1,5 @@
+package antlr4;
+
 import org.antlr.v4.runtime.*;
 
 public class BailErrorStrategy extends DefaultErrorStrategy {

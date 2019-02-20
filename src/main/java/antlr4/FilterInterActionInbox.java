@@ -1,3 +1,4 @@
+package antlr4;
 
 import com.antlr4.interAction.InterActionLexer;
 import com.antlr4.interAction.InterActionParser;
@@ -41,7 +42,7 @@ public class FilterInterActionInbox {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         InterActionParser parser = new InterActionParser(tokens);
         /*parser.removeErrorListeners();
-        parser.addErrorListener(new VerboseListener());*/
+        parser.addErrorListener(new antlr4.VerboseListener());*/
         return parser;
     }
 }

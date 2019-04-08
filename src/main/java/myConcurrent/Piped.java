@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PipedReader;
 import java.io.PipedWriter;
 
+/**
+ * @author zhoubo*/
 public class Piped {
 
     public static void main(String[] args) throws IOException {
